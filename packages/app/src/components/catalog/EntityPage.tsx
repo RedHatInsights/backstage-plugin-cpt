@@ -59,6 +59,8 @@ import {
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
+import { EntityCPTContent } from '@redhatinsights/backstage-plugin-cpt';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -237,6 +239,10 @@ const defaultEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/cpt" title="CPT">
+      <EntityCPTContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">

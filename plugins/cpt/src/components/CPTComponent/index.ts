@@ -1,0 +1,1 @@
+export { CPTComponent  } from './CPTComponent';
