@@ -12,6 +12,9 @@ import { DataTableComponent } from '../DataTableComponent/DataTableComponent';
 import { queryTestRunsData } from '../../common/QueryTestRunsData';
 
 export const CPTComponent = () => {
+  const title = "CPT Test Runs";
+  const subheader = "Performance testing results";
+
   const {
     result: TestRunsResult,
     loaded: TestRunsLoaded,
@@ -34,7 +37,7 @@ export const CPTComponent = () => {
 
   if (TestRunsError) {
     return (
-      <InfoCard>
+      <InfoCard title={title} subheader={subheader}>
         <Typography align="center" variant="body1">
           Error retrieving data from OpenSearch.
         </Typography>
@@ -44,14 +47,14 @@ export const CPTComponent = () => {
 
   if (!TestRunsLoaded) {
     return (
-      <InfoCard className={classes.root} title="test" >
+      <InfoCard title={title} subheader={subheader}>
         <LinearProgress />
       </InfoCard>
     );
   }
 
   return (
-    <InfoCard >
+    <InfoCard title={title} subheader={subheader}>
         <DataTableComponent data={TestRunsResult} />
     </InfoCard>
   )

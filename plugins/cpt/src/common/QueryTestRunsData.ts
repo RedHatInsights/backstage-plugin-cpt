@@ -20,23 +20,34 @@ export const queryTestRunsData = () => {
 
     const getTestRunsData = async() => {
         const query = getQueryValue();
-        console.log(query);
 
-        const body = {
-            "query":{
-                "term":{
-                    "product.keyword":{
-                        "value":`${query}`
+        await fetch(`${backendUrl}/api/proxy/cpt`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "query":{
+                    "term":{
+                        "product.keyword":{
+                            "value":`${query}`
+                        }
                     }
-                }
-            }
-        }
-
-        await fetch(`${backendUrl}/api/proxy/cpt-test-runs`, {
-            body: body,
+                },
+                "sort": [
+                    {
+                      "date": {
+                        "order": "desc"
+                      }
+                    }
+                ],
+                "size": 50,
+                "from": 0
+            }),
         })
         .then(response => response.json())
         .then(resp => {
+            console.log(resp)
             setLoaded(true)
             setResult(resp.hits.hits)
         })

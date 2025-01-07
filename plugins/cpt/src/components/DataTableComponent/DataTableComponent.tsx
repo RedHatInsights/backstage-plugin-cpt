@@ -32,6 +32,15 @@ export const DataTableComponent = (data: any) => {
     setPage(page);
   };
 
+  const formatISODateTime = (isoDateString: any) => {
+    const date = new Date(isoDateString);
+
+    const formattedDate = date.toLocaleDateString();
+    const formattedTime = date.toLocaleTimeString();
+
+    return `${formattedDate} @ ${formattedTime}`;
+}
+
   const RowHead = () => {
     return (
       <TableHead>
@@ -54,19 +63,20 @@ export const DataTableComponent = (data: any) => {
   };
 
   const RowBody = ({ result }: { result: any }) => {
+    console.log(result)
     return (
       <TableRow>
-        <TableCell style={{ width: '8%' }} align="center">
-          {result._date}
+        <TableCell align="center">
+          {formatISODateTime(result._source.date)}
         </TableCell>
         <TableCell align="center">
-          {result.version}
+          {result._source.version}
         </TableCell>
         <TableCell align="center">
-          {result.test}
+          {result._source.test}
         </TableCell>
-        <TableCell style={{ width: '10%' }} align="center">
-          {result.result}
+        <TableCell align="center">
+          {result._source.result}
         </TableCell>
       </TableRow>
     );
@@ -79,11 +89,11 @@ export const DataTableComponent = (data: any) => {
           <RowHead />
           <TableBody>
             {(data.data.length > 0
-              ? data.slice(
+              ? data.data.slice(
                   page * rowsPerPage,
                   page * rowsPerPage + rowsPerPage,
                 )
-              : data
+              : data.data
             ).map((deployment, index) => (
               <RowBody result={deployment} key={index}/>
             ))}
@@ -100,7 +110,7 @@ export const DataTableComponent = (data: any) => {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={data.length}
+        count={data.data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

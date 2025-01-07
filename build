@@ -1,0 +1,9 @@
+#!/bin/bash
+
+yarn workspace @redhatinsights/backstage-plugin-cpt export-dynamic
+cd plugins/cpt/
+rm *.tgz
+npm pack ./dist-dynamic
+cd ../..
+mv plugins/cpt/*.tgz .
+sha256sum *.tgz | awk '{print $1}' | xxd -r -p | base64

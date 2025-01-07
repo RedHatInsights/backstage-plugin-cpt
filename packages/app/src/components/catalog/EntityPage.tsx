@@ -241,12 +241,12 @@ const defaultEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/cpt" title="CPT">
-      <EntityCPTContent />
-    </EntityLayout.Route>
-
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/cpt" title="CPT">
+      <EntityCPTContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
