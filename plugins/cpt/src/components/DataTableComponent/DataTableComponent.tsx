@@ -42,9 +42,9 @@ export const DataTableComponent = (data: any) => {
 
   const ResultIcon = (params: any) => {
     if (params.result == 'FAIL') {
-      return <Close style={{ color: 'red' }} />;
+      return <Close data-testid="CloseIcon" style={{ color: 'red' }} />;
     }
-    return <CheckCircle style={{ color: 'green' }} />;
+    return <CheckCircle data-testid="CheckCircleIcon" style={{ color: 'green' }} />;
   };
 
   const RowHead = () => {
@@ -58,7 +58,7 @@ export const DataTableComponent = (data: any) => {
             <Typography variant="button">Image Tag</Typography>
           </TableCell>
           <TableCell align="center">
-            <Typography variant="button">Test</Typography>
+            <Typography variant="button">Test Name</Typography>
           </TableCell>
           <TableCell align="center">
             <Typography variant="button">Result</Typography>
@@ -69,7 +69,6 @@ export const DataTableComponent = (data: any) => {
   };
 
   const RowBody = ({ result }: { result: any }) => {
-    console.log(result);
     return (
       <TableRow>
         <TableCell align="center">
@@ -93,7 +92,6 @@ export const DataTableComponent = (data: any) => {
   };
 
   const ShowTable = () => {
-    console.log(data);
     return (
       <Table aria-label="simple table">
         <RowHead />
