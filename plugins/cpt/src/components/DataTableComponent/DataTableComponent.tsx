@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  Card,
-  CardContent,
   Grid,
-  Link,
   Table,
   TableBody,
   TableCell,
@@ -12,7 +9,9 @@ import {
   TablePagination,
   TableRow,
   Typography,
+  Link,
 } from '@material-ui/core';
+import { Close, CheckCircle } from '@material-ui/icons';
 
 export const DataTableComponent = (data: any) => {
   const [page, setPage] = React.useState(0);
@@ -39,7 +38,14 @@ export const DataTableComponent = (data: any) => {
     const formattedTime = date.toLocaleTimeString();
 
     return `${formattedDate} @ ${formattedTime}`;
-}
+  };
+
+  const ResultIcon = (params: any) => {
+    if (params.result == 'FAIL') {
+      return <Close style={{ color: 'red' }} />;
+    }
+    return <CheckCircle style={{ color: 'green' }} />;
+  };
 
   const RowHead = () => {
     return (
@@ -63,44 +69,48 @@ export const DataTableComponent = (data: any) => {
   };
 
   const RowBody = ({ result }: { result: any }) => {
-    console.log(result)
+    console.log(result);
     return (
       <TableRow>
         <TableCell align="center">
           {formatISODateTime(result._source.date)}
         </TableCell>
         <TableCell align="center">
-          {result._source.version}
+          <Link href={`https://${result._source.version}`} target="_blank">
+            {result._source.version}
+          </Link>
         </TableCell>
         <TableCell align="center">
-          {result._source.test}
+          <Link href={result._source.link} target="_blank">
+            {result._source.test}
+          </Link>
         </TableCell>
         <TableCell align="center">
-          {result._source.result}
+          <ResultIcon result={result._source.result} />
         </TableCell>
       </TableRow>
     );
   };
 
   const ShowTable = () => {
-    console.log(data)
+    console.log(data);
     return (
-        <Table aria-label="simple table">
-          <RowHead />
-          <TableBody>
-            {(data.data.length > 0
-              ? data.data.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage,
-                )
-              : data.data
-            ).map((deployment, index) => (
-              <RowBody result={deployment} key={index}/>
-            ))}
-          </TableBody>
-        </Table>
-      );
-    };
+      <Table aria-label="simple table">
+        <RowHead />
+        <TableBody>
+          {(data.data.length > 0
+            ? data.data.slice(
+                page * rowsPerPage,
+                page * rowsPerPage + rowsPerPage,
+              )
+            : data.data
+          ).map((deployment, index) => (
+            <RowBody result={deployment} key={index} />
+          ))}
+        </TableBody>
+      </Table>
+    );
+  };
 
   return (
     <Grid container spacing={3} direction="column">
@@ -116,6 +126,6 @@ export const DataTableComponent = (data: any) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </Grid>    
-  )
-}
+    </Grid>
+  );
+};
