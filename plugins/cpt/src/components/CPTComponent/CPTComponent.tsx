@@ -21,8 +21,6 @@ export const CPTComponent = () => {
     error: TestRunsError,
   } = queryTestRunsData();
 
-  console.log(TestRunsResult);
-
   // styles for linear progress bar
   const useStyles = makeStyles(theme => ({
     root: {

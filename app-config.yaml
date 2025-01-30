@@ -84,7 +84,7 @@ catalog:
     - allow: [Component, System, User, Group, Resource, Location, Template, API]
   locations:
     - type: file
-      target: ../../catalog/all.yaml
+      target: ../../../backstage-plugin-visual-qontract/catalog/all.yaml
 
     ## Uncomment these lines to add more example data
     # - type: url
