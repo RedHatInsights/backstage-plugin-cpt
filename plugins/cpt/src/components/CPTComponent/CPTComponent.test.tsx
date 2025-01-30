@@ -3,34 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { CPTComponent } from '../CPTComponent';
 import { queryTestRunsData } from '../../common/QueryTestRunsData';
-import { TestApiProvider } from '@backstage/test-utils';
 
-
-// Mock Data
-const mockTestRunsData = {
-  data: [
-    {
-      _source: {
-        date: '2024-01-25T12:34:56Z',
-        version: 'v1.2.3',
-        link: 'https://example.com/test1',
-        test: 'Test A',
-        result: 'PASS',
-      },
-    },
-    {
-      _source: {
-        date: '2024-01-26T14:30:00Z',
-        version: 'v1.2.4',
-        link: 'https://example.com/test2',
-        test: 'Test B',
-        result: 'FAIL',
-      },
-    },
-  ],
-};
-
-// **Mock queryTestRunsData** so it returns different states
 jest.mock('../../common/QueryTestRunsData', () => ({
   queryTestRunsData: jest.fn(),
 }));
@@ -61,7 +34,8 @@ describe('CPTComponent', () => {
     render(<CPTComponent />);
 
     // Check for error message
-    expect(screen.getByText(/error retrieving data from opensearch/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/error retrieving data from opensearch/i),
+    ).toBeInTheDocument();
   });
-
 });
