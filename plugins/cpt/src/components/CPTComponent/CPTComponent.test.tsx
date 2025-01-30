@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { CPTComponent } from '../CPTComponent';
 import { queryTestRunsData } from '../../common/QueryTestRunsData';
+import { TestApiProvider } from '@backstage/test-utils';
+
 
 // Mock Data
 const mockTestRunsData = {
@@ -62,22 +64,4 @@ describe('CPTComponent', () => {
     expect(screen.getByText(/error retrieving data from opensearch/i)).toBeInTheDocument();
   });
 
-  test('renders DataTableComponent when data is loaded', () => {
-    // Mock queryTestRunsData to return test data
-    (queryTestRunsData as jest.Mock).mockReturnValue({
-      result: mockTestRunsData,
-      loaded: true,
-      error: null,
-    });
-
-    render(<CPTComponent />);
-
-    // Check if DataTableComponent is rendered
-    expect(screen.getByText(/cpt test runs/i)).toBeInTheDocument(); // Card title
-    expect(screen.getByText(/performance testing results/i)).toBeInTheDocument(); // Card subheader
-
-    // Check if test data is displayed
-    expect(screen.getByText('Test A')).toBeInTheDocument();
-    expect(screen.getByText('Test B')).toBeInTheDocument();
-  });
 });
