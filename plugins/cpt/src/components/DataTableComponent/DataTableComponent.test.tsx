@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { DataTableComponent } from './DataTableComponent';
 
-// Sample test data
+
 const mockData = {
   data: [
     {
@@ -51,7 +51,7 @@ describe('DataTableComponent', () => {
     render(<DataTableComponent {...mockData} />);
 
     // Check formatted dates
-    expect(screen.getByText("1/25/2024 @ 12:34:56 PM")).toBeInTheDocument(); // Ensure "@" separator is present
+    expect(screen.getByText("1/25/2024 @ 12:34:56 PM")).toBeInTheDocument();
   });
 
   test('renders correct icons for PASS/FAIL results', () => {
