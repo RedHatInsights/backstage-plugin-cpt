@@ -57,7 +57,7 @@ export const CPTComponent = () => {
   if (TestRunsResult?.length === 0) {
     return (
       <InfoCard title={title} subheader={subheader}>
-        <Typography variant="h5" component="h2" align="center">
+        <Typography variant="h5" component="h5" align="center">
           No results found for your query.
         </Typography>
         <Typography variant="subtitle1" align="center">
