@@ -5,16 +5,22 @@
 export ELASTICSEARCH_URL="http://elastic.mycompany.com/results-dashboard-data/_doc/_search"
 ```
 
-## Develop
+## Catalog
+
+Migrate the `catalog_example` directory to the default `category` directory.
 ```
-yarn dev
+cp -r catalog_example catalog
 ```
 
-## Catalog
 Add the following annotation to a Component entity with the correct mapping to a CPT test bucket:
 
 ```
 cpt-test-runs/query: "Inventory Export"
+```
+
+## Local Development 
+```
+yarn dev
 ```
 
 ## Test
