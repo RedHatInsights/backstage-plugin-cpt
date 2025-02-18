@@ -38,4 +38,21 @@ describe('CPTComponent', () => {
       screen.getByText(/error retrieving data from opensearch/i),
     ).toBeInTheDocument();
   });
+
+  test('displays instructions for setting up annotation', () => {
+    // Mock queryTestRunsData to return an error
+    (queryTestRunsData as jest.Mock).mockReturnValue({
+      result: [],
+      loaded: true,
+      error: null,
+    });
+
+    render(<CPTComponent />);
+
+    // Check for error message
+    expect(
+      screen.getByText(/No results found for your query/i),
+    ).toBeInTheDocument();
+  });
+
 });

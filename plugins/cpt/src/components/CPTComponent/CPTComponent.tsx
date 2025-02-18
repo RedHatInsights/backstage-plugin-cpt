@@ -4,6 +4,7 @@ import {
 } from '@backstage/core-components';
 import {
   Typography,
+  Box
 } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,6 +48,21 @@ export const CPTComponent = () => {
     return (
       <InfoCard title={title} subheader={subheader}>
         <LinearProgress />
+      </InfoCard>
+    );
+  }
+
+  // If this is empty, populate new info card
+  // so you can copy the logic from above
+  if (TestRunsResult?.length === 0) {
+    return (
+      <InfoCard title={title} subheader={subheader}>
+        <Typography variant="h5" component="h5" align="center">
+          No results found for your query.
+        </Typography>
+        <Typography variant="subtitle1" align="center">
+          To configure this component to display data from ElasticSearch, add the annotation: <Box component="pre" sx={{ display: 'inline' }}>cpt-test-runs/query</Box>
+        </Typography>
       </InfoCard>
     );
   }
