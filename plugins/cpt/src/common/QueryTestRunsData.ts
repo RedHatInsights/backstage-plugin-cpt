@@ -19,7 +19,6 @@ export const queryTestRunsData = () => {
     }
 
     const getTestRunsData = async() => {
-        console.log(getQueryValue());
         const query = getQueryValue();
 
         await fetch(`${backendUrl}/api/proxy/cpt`, {
