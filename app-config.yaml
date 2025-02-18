@@ -46,7 +46,6 @@ integrations:
 proxy:
   endpoints:
     '/cpt':
-      credentials: dangerously-allow-unauthenticated
       target: ${ELASTICSEARCH_URL}
 
   ### Example for how to add a proxy endpoint for the frontend.

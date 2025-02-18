@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
+import { useApi, configApiRef, fetchApiRef } from '@backstage/core-plugin-api';
 import { useEntity } from '@backstage/plugin-catalog-react';
 
 export const queryTestRunsData = () => {
@@ -13,6 +13,8 @@ export const queryTestRunsData = () => {
 
     const { entity } = useEntity();
 
+    const fetchApi = useApi(fetchApiRef);
+
     const getQueryValue = () => {
         // Configured through the entity provider
         return entity?.metadata?.annotations?.["cpt-test-runs/query"]
@@ -21,7 +23,7 @@ export const queryTestRunsData = () => {
     const getTestRunsData = async() => {
         const query = getQueryValue();
 
-        await fetch(`${backendUrl}/api/proxy/cpt`, {
+        await fetchApi.fetch(`${backendUrl}/api/proxy/cpt`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
