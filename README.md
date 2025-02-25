@@ -7,7 +7,7 @@ export ELASTICSEARCH_URL="http://elastic.mycompany.com/results-dashboard-data/_d
 
 ## Catalog
 
-Migrate the `catalog_example` directory to the default `category` directory.
+Migrate the `catalog_example` directory to the default `catalog` directory.
 ```
 cp -r catalog_example catalog
 ```
