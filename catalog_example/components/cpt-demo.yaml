@@ -1,0 +1,21 @@
+---
+# Test entity for the CPT (Compliance/Performance Testing) plugin.
+# Use this entity in the catalog to verify the CPT tab and plugin integration.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cpt-demo
+  title: CPT Plugin Demo
+  description: |
+    Demo component for testing the CPT plugin in the local Backstage environment.
+    This entity has the cpt-test-runs/query annotation so the CPT tab is shown.
+  tags:
+    - cpt
+    - demo
+  annotations:
+    # Required for CPT plugin: value is used as product.keyword in Elasticsearch query
+    cpt-test-runs/query: "cpt-demo"
+spec:
+  type: other
+  lifecycle: experimental
+  owner: default-team

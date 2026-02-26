@@ -39,6 +39,7 @@ import {
   Direction,
   EntityCatalogGraphCard,
 } from '@backstage/plugin-catalog-graph';
+import type { Entity } from '@backstage/catalog-model';
 import {
   RELATION_API_CONSUMED_BY,
   RELATION_API_PROVIDED_BY,
@@ -59,6 +60,10 @@ import {
 } from '@backstage/plugin-kubernetes';
 
 import { EntityCPTContent } from '@redhatinsights/backstage-plugin-cpt';
+
+/** Show CPT tab only for entities that have the cpt-test-runs/query annotation */
+const hasCPTAnnotation = (entity: Entity) =>
+  Boolean(entity?.metadata?.annotations?.['cpt-test-runs/query']);
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -242,6 +247,18 @@ const defaultEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+  </EntityLayout>
+);
+
+const defaultEntityPageWithCPT = (
+  <EntityLayout>
+    <EntityLayout.Route path="/" title="Overview">
+      {overviewContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/docs" title="Docs">
+      {techdocsContent}
+    </EntityLayout.Route>
 
     <EntityLayout.Route path="/cpt" title="CPT">
       <EntityCPTContent />
@@ -257,6 +274,10 @@ const componentPage = (
 
     <EntitySwitch.Case if={isComponentType('website')}>
       {websiteEntityPage}
+    </EntitySwitch.Case>
+
+    <EntitySwitch.Case if={hasCPTAnnotation}>
+      {defaultEntityPageWithCPT}
     </EntitySwitch.Case>
 
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
@@ -411,6 +432,9 @@ export const entityPage = (
     <EntitySwitch.Case if={isKind('system')} children={systemPage} />
     <EntitySwitch.Case if={isKind('domain')} children={domainPage} />
 
+    <EntitySwitch.Case if={hasCPTAnnotation}>
+      {defaultEntityPageWithCPT}
+    </EntitySwitch.Case>
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
 );

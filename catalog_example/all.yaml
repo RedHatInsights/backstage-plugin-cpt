@@ -7,4 +7,5 @@ metadata:
 spec:
   targets:
   - ./components/test-app.yaml
+  - ./components/cpt-demo.yaml
 
