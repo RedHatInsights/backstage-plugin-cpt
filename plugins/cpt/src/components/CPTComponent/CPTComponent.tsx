@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     InfoCard,
 } from '@backstage/core-components';
@@ -7,10 +6,9 @@ import {
   Box
 } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { DataTableComponent } from '../DataTableComponent/DataTableComponent';
-import { queryTestRunsData } from '../../common/QueryTestRunsData';
+import { useQueryTestRunsData } from '../../common/QueryTestRunsData';
 
 export const CPTComponent = () => {
   const title = "CPT Test Runs";
@@ -20,19 +18,7 @@ export const CPTComponent = () => {
     result: TestRunsResult,
     loaded: TestRunsLoaded,
     error: TestRunsError,
-  } = queryTestRunsData();
-
-  // styles for linear progress bar
-  const useStyles = makeStyles(theme => ({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }));
-
-  const classes = useStyles();
+  } = useQueryTestRunsData();
 
   if (TestRunsError) {
     return (
@@ -73,3 +59,4 @@ export const CPTComponent = () => {
     </InfoCard>
   )
 }
+

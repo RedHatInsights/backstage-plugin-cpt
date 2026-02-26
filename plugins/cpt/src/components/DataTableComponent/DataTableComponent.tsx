@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   Grid,
   Table,
@@ -11,11 +11,12 @@ import {
   Typography,
   Link,
 } from '@material-ui/core';
-import { Close, CheckCircle } from '@material-ui/icons';
+import Close from '@material-ui/icons/Close';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 
 export const DataTableComponent = (data: any) => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -41,7 +42,7 @@ export const DataTableComponent = (data: any) => {
   };
 
   const ResultIcon = (params: any) => {
-    if (params.result == 'FAIL') {
+    if (params.result === 'FAIL') {
       return <Close data-testid="CloseIcon" style={{ color: 'red' }} />;
     }
     return <CheckCircle data-testid="CheckCircleIcon" style={{ color: 'green' }} />;
@@ -102,7 +103,7 @@ export const DataTableComponent = (data: any) => {
                 page * rowsPerPage + rowsPerPage,
               )
             : data.data
-          ).map((deployment, index) => (
+          ).map((deployment: any, index: number) => (
             <RowBody result={deployment} key={index} />
           ))}
         </TableBody>
@@ -127,3 +128,4 @@ export const DataTableComponent = (data: any) => {
     </Grid>
   );
 };
+

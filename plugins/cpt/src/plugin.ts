@@ -15,3 +15,4 @@ export const EntityCPTContent = cptPlugin.provide(
     },
   }),
 );
+
