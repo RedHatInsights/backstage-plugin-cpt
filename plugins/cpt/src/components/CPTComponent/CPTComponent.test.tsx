@@ -1,17 +1,16 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { CPTComponent } from '../CPTComponent';
-import { queryTestRunsData } from '../../common/QueryTestRunsData';
+import { useQueryTestRunsData } from '../../common/QueryTestRunsData';
 
 jest.mock('../../common/QueryTestRunsData', () => ({
-  queryTestRunsData: jest.fn(),
+  useQueryTestRunsData: jest.fn(),
 }));
 
 describe('CPTComponent', () => {
   test('displays loading state initially', () => {
-    // Mock queryTestRunsData to return loading state
-    (queryTestRunsData as jest.Mock).mockReturnValue({
+    // Mock useQueryTestRunsData to return loading state
+    (useQueryTestRunsData as jest.Mock).mockReturnValue({
       result: null,
       loaded: false,
       error: null,
@@ -24,8 +23,8 @@ describe('CPTComponent', () => {
   });
 
   test('displays error message when data fetch fails', () => {
-    // Mock queryTestRunsData to return an error
-    (queryTestRunsData as jest.Mock).mockReturnValue({
+    // Mock useQueryTestRunsData to return an error
+    (useQueryTestRunsData as jest.Mock).mockReturnValue({
       result: null,
       loaded: true,
       error: new Error('Test error'),
@@ -40,8 +39,8 @@ describe('CPTComponent', () => {
   });
 
   test('displays instructions for setting up annotation', () => {
-    // Mock queryTestRunsData to return an error
-    (queryTestRunsData as jest.Mock).mockReturnValue({
+    // Mock useQueryTestRunsData to return empty results
+    (useQueryTestRunsData as jest.Mock).mockReturnValue({
       result: [],
       loaded: true,
       error: null,
@@ -56,3 +55,4 @@ describe('CPTComponent', () => {
   });
 
 });
+

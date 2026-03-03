@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useApi, configApiRef, fetchApiRef } from '@backstage/core-plugin-api';
 import { useEntity } from '@backstage/plugin-catalog-react';
 
-export const queryTestRunsData = () => {
+export const useQueryTestRunsData = () => {
     const [result, setResult] = useState([]);
     const [loaded, setLoaded] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
@@ -15,12 +15,12 @@ export const queryTestRunsData = () => {
 
     const fetchApi = useApi(fetchApiRef);
 
-    const getQueryValue = () => {
+    const getQueryValue = useCallback(() => {
         // Configured through the entity provider
         return entity?.metadata?.annotations?.["cpt-test-runs/query"]
-    }
+    }, [entity]);
 
-    const getTestRunsData = async() => {
+    const getTestRunsData = useCallback(async () => {
         const query = getQueryValue();
 
         await fetchApi.fetch(`${backendUrl}/api/proxy/cpt`, {
@@ -49,20 +49,17 @@ export const queryTestRunsData = () => {
         })
         .then(response => response.json())
         .then(resp => {
-            console.log(resp)
             setLoaded(true)
             setResult(resp.hits.hits)
         })
-        .catch((_error) => {
+        .catch(() => {
             setError(true)
-            console.error(`Error fetching CPT test runs data`);
         })
-    }
+    }, [backendUrl, fetchApi, getQueryValue]);
 
     useEffect(() => {
         getTestRunsData()
-
-    }, [backendUrl]);
+    }, [getTestRunsData]);
 
     return { result, loaded, error }
 }

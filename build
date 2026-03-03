@@ -7,3 +7,4 @@ npm pack ./dist-dynamic
 cd ../..
 mv plugins/cpt/*.tgz .
 sha256sum *.tgz | awk '{print $1}' | xxd -r -p | base64
+

@@ -1,0 +1,2 @@
+export { DataTableComponent } from './DataTableComponent';
+
