@@ -1,6 +1,6 @@
 # CPT Backstage Plugin
 
-A [Backstage][backstage-url] frontend plugin that integrates the CPT (Certified Platform Testing) system into your Backstage catalog, enabling teams to view and track test run data directly from component pages.
+A [Backstage][backstage-url] frontend plugin that integrates the CPT (Continuous Performance Testing) system into your Backstage catalog, enabling teams to view and track test run data directly from component pages.
 
 ## Overview
 
@@ -15,7 +15,7 @@ The CPT plugin allows component owners to annotate catalog entities with test bu
 ## Prerequisites
 
 - **Node.js** 22 or 24
-- **Yarn** 4.4.1 (Corepack-managed; version is pinned in `package.json`)
+- **Yarn** (Corepack-managed; version is pinned in `package.json`)
 - **Environment variables:**
   - `ELASTICSEARCH_URL` — The Elasticsearch endpoint for CPT test run data
 
