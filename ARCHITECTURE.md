@@ -1,7 +1,7 @@
 # Architecture
 
 This document describes the internal architecture of the backstage-plugin-cpt project -- a
-[Backstage][backstage] application with a custom frontend plugin for displaying Cluster Performance
+[Backstage][backstage] application with a custom frontend plugin for displaying Continuous Performance
 Testing (CPT) results sourced from an [Elasticsearch][elasticsearch]/[OpenSearch][opensearch]
 backend.
 
@@ -153,8 +153,8 @@ be loaded at runtime without rebuilding the entire application. The `dist-scalpr
 
 | Technology | Purpose |
 |---|---|
-| [React 18][react] | UI framework |
-| [TypeScript ~5.8][typescript] | Type-safe JavaScript |
+| [React][react] | UI framework |
+| [TypeScript][typescript] | Type-safe JavaScript |
 | [Material-UI v4][mui] | Component library (Backstage standard) |
 | [Backstage core-components][core-components] | Backstage UI primitives (`InfoCard`, `Sidebar`, etc.) |
 | [Backstage core-plugin-api][core-plugin-api] | Plugin registration, API refs, `useApi` |
@@ -175,9 +175,9 @@ be loaded at runtime without rebuilding the entire application. The `dist-scalpr
 
 | Tool | Purpose |
 |---|---|
-| [Yarn 4.4.1][yarn] | Package manager (node-modules linker) |
+| [Yarn][yarn] | Package manager (node-modules linker) |
 | [Backstage CLI][backstage-cli] | Build, lint, test orchestration |
-| [Jest 30][jest] | Unit testing |
+| [Jest][jest] | Unit testing |
 | [Playwright][playwright] | End-to-end testing |
 | [ESLint + Prettier][eslint] | Code style enforcement |
 | [Dependabot][dependabot] | Automated dependency updates |

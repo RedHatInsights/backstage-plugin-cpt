@@ -2,19 +2,21 @@
 
 ## Project Overview
 
-The Backstage CPT Plugin is a custom frontend plugin for Backstage that displays test results from the CPT (Certified Platform Testing) system. It queries test run data from Elasticsearch and renders filterable tables within Backstage catalog entity pages. The plugin is distributed as part of a Backstage monorepo containing a reference application, backend, and the plugin itself.
+The Backstage CPT Plugin is a custom frontend plugin for Backstage that displays test results from the CPT (Continuous Performance Testing) system. It queries test run data from Elasticsearch and renders filterable tables within Backstage catalog entity pages. The plugin is distributed as part of a Backstage monorepo containing a reference application, backend, and the plugin itself.
 
 ## Dependencies
 
 **Runtime:**
-- React 18, Material-UI v4 (Backstage components)
+
+- React, Material-UI v4 (Backstage components)
 - Backstage core libraries (`@backstage/core-*`, `@backstage/plugin-catalog-react`)
 - Backend: Node 22|24, PostgreSQL (production), SQLite (development)
 
 **Development/Test:**
-- TypeScript ~5.8.0
-- Jest ^30.2.0, Playwright ^1.32.3
-- Yarn 4.4.1 (workspaces)
+
+- TypeScript
+- Jest, Playwright
+- Yarn (workspaces)
 - Backstage CLI
 - ESLint, Prettier (via `@backstage/cli/config`)
 
@@ -45,7 +47,7 @@ The repository is a Backstage monorepo with three packages: `app` (frontend), `b
 
 - **Linter:** ESLint (root `.eslintrc.js` with minimal config)
 - **Formatter:** Prettier (configured via `@backstage/cli/config/prettier` defaults; see `.prettierignore` for excluded paths)
-- **TypeScript:** ~5.8.0
+- **TypeScript**
 - **Pre-commit:** lint-staged configured in `package.json` (ESLint + Prettier on staged files) but hooks not activated
 - Use reference-style links in Markdown: `[text][ref-id]` format only
 
@@ -59,8 +61,8 @@ The repository is a Backstage monorepo with three packages: `app` (frontend), `b
 
 ## Testing
 
-- **Unit/integration:** Jest ^30.2.0. Run `yarn test:all` for all packages or `yarn workspace @redhatinsights/backstage-plugin-cpt test` for plugin only.
-- **E2E:** Playwright ^1.32.3. Run `yarn test:e2e`.
+- **Unit/integration:** Jest. Run `yarn test:all` for all packages or `yarn workspace @redhatinsights/backstage-plugin-cpt test` for plugin only.
+- **E2E:** Playwright. Run `yarn test:e2e`.
 - **Coverage:** `yarn test:all` includes coverage reporting.
 - Test files use `.test.ts` or `.test.tsx` extensions.
 
